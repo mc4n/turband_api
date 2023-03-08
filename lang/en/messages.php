@@ -1,6 +1,8 @@
 <?php
 return [
     'model.session' => 'Session',
+    'model.word' => 'Word',
+    'model.definition' => 'Definition',
 
     'unauthorized' => 'You\'re not authorized for this action.',
 

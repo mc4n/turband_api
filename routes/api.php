@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DefinitionController;
+use App\Http\Controllers\WordController;
 
 Route::controller(AuthController::class)->group(
     function () {
@@ -22,3 +24,11 @@ Route::controller(AuthController::class)->group(
         });
     }
 );
+
+Route::apiResource('words', WordController::class)
+    ->middleware('auth:sanctum')->only(['index']);
+
+Route::group(['prefix' => 'definitions', 'controller' => DefinitionController::class], function () {
+    Route::get('', 'index');
+    Route::post('', 'store')->middleware('auth:sanctum');
+});
